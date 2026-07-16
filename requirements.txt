@@ -1,0 +1,35 @@
+fastapi
+uvicorn[standard]
+sentence-transformers==2.7.0
+python-dotenv==1.2.2
+numpy==1.26.4
+axios
+
+
+
+# PDF processing
+PyMuPDF
+
+# Text chunking
+langchain-text-splitters
+
+# Embeddings
+torch
+transformers
+
+# Vector database
+qdrant-client
+
+# Progress bars
+tqdm
+
+# LLMs
+huggingface_hub
+google-genai
+
+# Backend API
+fastapi
+uvicorn
+
+# Data validation
+pydantic
