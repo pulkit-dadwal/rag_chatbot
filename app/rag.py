@@ -1,7 +1,17 @@
-from query import Retriever
-from llms.huggingface_llm import HuggingFaceLLM
-from llms.gemini_llm import GeminiLLM
+from torch import chunk
 
+from app.query import Retriever
+from app.llms.huggingface_llm import HuggingFaceLLM
+from app.llms.gemini_llm import GeminiLLM
+import logging
+
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
+
+logger = logging.getLogger(__name__)
 
 class RAG:
 
@@ -50,6 +60,20 @@ Answer:
 
         retrieved_chunks = self.retriever.retrieve(question)
 
+        logger.info("=" * 80)
+        logger.info(f"Query: {question}")
+        logger.info(f"Retrieved {len(retrieved_chunks)} chunks")
+
+        for i, chunk in enumerate(retrieved_chunks, start=1):
+
+            logger.info(
+                f"Chunk {i} | "
+                f"Score: {chunk['score']:.4f} | "
+                f"Source: {chunk['source']}"
+            )
+            logger.info(f"Text: {chunk['text'][:200]}...")
+
+
         prompt = self.build_prompt(
             question,
             retrieved_chunks
@@ -66,6 +90,10 @@ Answer:
         else:
 
             raise ValueError("Unsupported model")
+        
+        logger.info(f"Model Used: {model}")
+        logger.info(f"Answer: {answer}")
+        logger.info("=" * 80)
         
 
         return {

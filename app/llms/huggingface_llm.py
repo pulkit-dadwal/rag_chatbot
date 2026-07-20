@@ -1,4 +1,4 @@
-from config import HF_TOKEN
+from app.config import HF_TOKEN
 from huggingface_hub import InferenceClient
 
 class HuggingFaceLLM:

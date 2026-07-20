@@ -1,7 +1,7 @@
-from config import *
+from app.config import *
 
-from embeddings.embedding_model import EmbeddingModel
-from vectorstore.qdrant_client import VectorStore
+from app.embeddings.embedding_model import EmbeddingModel
+from app.vectorstore.qdrant_client import VectorStore
 
 
 class Retriever:

@@ -1,7 +1,7 @@
 from google import genai
 
-from config import GEMINI_API_KEY
-from llms.base_llm import BaseLLM
+from app.config import GEMINI_API_KEY
+from app.llms.base_llm import BaseLLM
 
 
 class GeminiLLM(BaseLLM):
